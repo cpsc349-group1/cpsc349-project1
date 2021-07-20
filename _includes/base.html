@@ -1,28 +1,55 @@
 ---
 site: Pet Photos
 ---
+<!DOCTYPE html>
+<html lang = "en">
+
 <head>
+    <title>{{site}}</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <style>
+        header{
+            background-color: lightblue;
+            color: black;
+        }
+        nav{
+            background-color: maroon;
+            color: black;
+        }
+        body{
+            background-color: {{color_keyword}};
+            {% if color_keyword == 'black' %}
+                color: white;
+            {% endif %}
+        }
+        footer{
+            background-color: lightblue;
+            color: black;
+        }
+    </style> 
 </head>
+
 <body>
 
-    <h1>{{ site }}</h1>
+    <header>
+        <h1>{{ site }}</h1>
+    </header>
 
-    {% unless page.url == '/' %}
-    	<a href="/">Home</a>
-    {% endunless %}
+    <nav>
+        <ul>
+            <li><a href="/">Index</a></li>
+            <li><a href="/about/">About Us</a></li>
+        </ul>
+    </nav>
 
-    {{ content }}
+    {{ content }}    
 
-    <ul>
-        {% for photo in collections.photos %}
-            <li>
-                <a href="{{ photo.url }}">
-                    A {{ photo.data.photo_keyword }} photo
-                    by {{ photo.data.photographer_first_name}} {{ photo.data.photographer_last_name }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
+
+    <footer>
+        Copyright @ 2021 CSUF Team 1
+    </footer>
 
 </body>
+
+</html>
